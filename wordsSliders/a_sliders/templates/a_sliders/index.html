@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block style %}
+<style>
+  .card {
+    width: 100%;
+    max-width: 300px;
+    height: 300px;
+
+    background-color: rgb(255, 255, 255);
+
+    position: relative;
+    cursor: pointer;
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently */
+  }
+
+  .wrong-counter {
+    color: rgb(156, 0, 0);
+  }
+
+  .success-counter {
+    color: rgb(10, 133, 10);
+  }
+
+  .card-text {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    width: 100%;
+    text-align: center;
+
+    color: black;
+    font-size: 1.7em;
+    font-weight: 800;
+
+    display: block;
+  }
+
+  .card-text.translation {
+    display: none;
+  }
+
+</style>
+{% endblock style %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="counter mb-5 d-flex justify-content-between">
+    <div class="wrong-counter d-flex">
+      <h3>Wrong:</h3>
+      <h3 class="counter-text ms-2">0</h3>
+      <h3 class="state">/20</h3>
+    </div>
+    <div class="current-counter d-flex">
+      <h3>Counter:</h3>
+      <h3 class="counter-text ms-2">0</h3>
+      <h3 class="state">/20</h3>
+    </div>
+    <div class="success-counter d-flex">
+      <h3>Success:</h3>
+      <h3 class="counter-text ms-2">0</h3>
+      <h3 class="state">/20</h3>
+    </div>
+  </div>
+
+  <div class="elements mt-5 d-flex justify-content-center">
+    <button type="button" id="no-btn" class="me-5 btn btn-outline-danger btn-lg">No</button>
+    <div class="card" id="card">
+      <p class="card-text" id="card-word">Test card</p>
+      <p class="card-text translation" id="card-translation">Тестовая карта</p>
+    </div>
+    <button type="button" id="yes-btn" class="ms-5 btn btn-outline-success btn-lg">Yes</button>
+  </div>
+</div>
+{% endblock content %}
+
+
+{% block scripts %}
+  <script>
+    const card = document.getElementById('card');
+    const cardWord = document.getElementById('card-word');
+    const cardTranslation = document.getElementById('card-translation');
+    let isShowTranslation = false;
+
+    card.addEventListener('click', function(e) {
+      if (isShowTranslation) {
+        cardWord.style.display = 'block';
+        cardTranslation.style.display = 'none';
+        card.style.backgroundColor = '#ffffff';
+      } else {
+        cardWord.style.display = 'none';
+        cardTranslation.style.display = 'block';
+        card.style.backgroundColor = '#cccccc';
+      }
+
+      isShowTranslation = !isShowTranslation;
+    })
+  </script>
+{% endblock scripts %}
