@@ -32,7 +32,7 @@
 			<div class="row">
 				{% for set in words_sets %}
 				<div class="col-sm-6 col-md-4 col-lg-3 mb-4 item">
-					<a href="#">
+					<a href={% url 'word_slider_view' user_id=set.creator.pk words_slides_slug=set.slug %}>
 						<div class="words-sets">
 								<p class="words-sets-title">{{ set.title }}</p>
 						</div>
